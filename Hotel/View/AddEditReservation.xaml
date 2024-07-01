@@ -1,4 +1,4 @@
-﻿<Window x:Class="Hotel.View.AddEditGuest"
+﻿<Window x:Class="Hotel.View.AddEditReservation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:validation="clr-namespace:Hotel.Validation"
         xmlns:local="clr-namespace:Hotel.View"
         mc:Ignorable="d"
-                Title="Добавление гостя" Height="400" Width="300">
+                Title="Добавление гостя" Height="500" Width="300">
     <Window.Resources>
         <validation:NameValidationRule x:Key="nameValidation" />
         <validation:OnlyDigitsValidationRule x:Key="onlyDigitsValidation"/>
@@ -48,45 +48,55 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock  Text="Введите фамилию " Margin="90 0 90 50" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="LastName" Margin="10 0" FontSize="16" Grid.Row="0" Grid.Column="1" 
-         VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-         Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
+        <TextBlock Text="Выберите дату заезда " Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"
+               TextWrapping="WrapWithOverflow" Margin="50,10,0,0"/>
+        <DatePicker x:Name="CheckInDate" Margin="10 40 10 10" FontSize="16" Grid.Row="0" Grid.Column="1" 
+                VerticalAlignment="Center" SelectedDate="{Binding CheckInDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <TextBlock Text="Выберите дату выезда" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"
+               TextWrapping="WrapWithOverflow" Margin="50,10,0,0"/>
+        <DatePicker x:Name="CheckOutDate" Margin="10 40 10 10" FontSize="16" Grid.Row="1" Grid.Column="1" 
+                VerticalAlignment="Center" SelectedDate="{Binding CheckOutDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <TextBlock Text="Выберите Гостя" TextWrapping="WrapWithOverflow"
+             Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="50,10,50,70"/>
+        <ComboBox x:Name="GuestId" Margin="10 40 10 10" FontSize="16" Grid.Row="2" Grid.Column="1"
+                  VerticalAlignment="Center"
+                DisplayMemberPath="FirstName" 
+                SelectedValue="{Binding GuestId}"
+                ItemsSource="{Binding Items}"
+                SelectedValuePath="GuestId" 
+                Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
+                Style="{StaticResource ComboBoxControlErrors}">
+            <ComboBox.SelectedItem>
+                <Binding Path="GuestId" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
-                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                        <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock  Text="Введите Имя " Margin="90,20,80,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="FirstName" Margin="10,48,10,0" FontSize="16" Grid.Row="1" 
-     VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-     Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
+            </ComboBox.SelectedItem>
+        </ComboBox>
+
+        <TextBlock Text="Выберите номер комнаты" TextWrapping="WrapWithOverflow"
+        Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="50,10,50,70"/>
+        <ComboBox x:Name="RoomId" Margin="10 40 10 10" FontSize="16" Grid.Row="3" Grid.Column="1"
+          VerticalAlignment="Center"
+        DisplayMemberPath="RoomNumber" 
+        SelectedValue="{Binding RoomId}"
+        ItemsSource="{Binding Items}"
+        SelectedValuePath="RoomId" 
+        Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
+        Style="{StaticResource ComboBoxControlErrors}">
+            <ComboBox.SelectedItem>
+                <Binding Path="RoomId" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
-                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                        <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock  Text="Введите Номер телефона " Margin="90,20,80,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PhoneNumber" Margin="10,48,10,0" FontSize="16" Grid.Row="2" 
-VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validation:PhoneValidationRule ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+            </ComboBox.SelectedItem>
+        </ComboBox>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="57*"/>
@@ -99,3 +109,4 @@ Style="{StaticResource InputControlErrors}">
         </Grid>
     </Grid>
 </Window>
+

@@ -7,16 +7,7 @@ namespace Hotel.Model;
 public partial class Employee:BaseClass
 {
     [Key]
-    private string? employeeId;
-    public string? EmployeeId
-    {
-        get { return employeeId; }
-        set
-        {
-            employeeId = value;
-            OnPropertyChanged(nameof(EmployeeId));
-        }
-    }
+    public int EmployeeId { get; set; }
 
     private string? firstName;
     public string? FirstName
@@ -62,8 +53,8 @@ public partial class Employee:BaseClass
         }
     }
 
-    private string? salary;
-    public string? Salary
+    private int? salary;
+    public int? Salary
     {
         get { return salary; }
         set

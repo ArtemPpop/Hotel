@@ -1,4 +1,4 @@
-﻿<Window x:Class="Hotel.View.AddEditRoom"
+﻿<Window x:Class="Hotel.View.AddEditPayment"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +6,13 @@
         xmlns:validation="clr-namespace:Hotel.Validation"
         xmlns:local="clr-namespace:Hotel.View"
         mc:Ignorable="d"
-        Title="AddEditRoom" Height="450" Width="300">
+                Title="Добавление гостя" Height="400" Width="300">
     <Window.Resources>
         <validation:NameValidationRule x:Key="nameValidation" />
         <validation:OnlyDigitsValidationRule x:Key="onlyDigitsValidation"/>
         <validation:NotEmpty x:Key="nameEmpty"/>
         <validation:SelectionValidationRule x:Key="SelectValidate"/>
+        <validation:PhoneValidationRule x:Key="PhoneValidation"/>
         <Style x:Key="InputControlErrors" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
@@ -47,65 +48,45 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock  Text="Введите номер" Margin="100,10,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="RoomNumber" Margin="10 0" FontSize="17" Grid.Row="0" Grid.Column="1" 
-          VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-          Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="RoomNumber" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validation:OnlyDigitsValidationRule ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock Text="Выберите Тип Номера" Margin="80,10,0,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="RoomType" Margin="10,45,10,10" FontSize="16" Grid.Row="1" VerticalAlignment="Top"
-          Text="{Binding RoomType}"
-          Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
-          Style="{StaticResource ComboBoxControlErrors}">
+        <TextBlock Text="Выберите дату оплаты " Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"
+               TextWrapping="WrapWithOverflow" Margin="80,10,60,0"/>
+        <DatePicker x:Name="PaymentDate" Margin="10 40 10 10" FontSize="16" Grid.Row="0" Grid.Column="1" 
+                VerticalAlignment="Center" SelectedDate="{Binding PaymentDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <TextBlock Text="Выберите способ оплаты" Margin="80,10,60,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="AmountPaid" Margin="10,45,10,10" FontSize="16" Grid.Row="1" VerticalAlignment="Top"
+   Text="{Binding AmountPaid}"
+   Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
+   Style="{StaticResource ComboBoxControlErrors}">
             <ComboBox.SelectedItem>
-                <Binding Path="RoomType" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="AmountPaid" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
             </ComboBox.SelectedItem>
-            <TextBlock>CRYSTAL SUITE</TextBlock>
-            <TextBlock>BUSINESS SUITE</TextBlock>
-            <TextBlock>SPA SUITE</TextBlock>
-            <TextBlock>ROYAL SUITE сьют</TextBlock>
-            <TextBlock>ROYAL GARDEN SUITE</TextBlock>
+            <TextBlock>Наличными</TextBlock>
+            <TextBlock>Безналичными</TextBlock>
         </ComboBox>
-        <TextBlock Text="Введите кол-во гостей" Margin="80,10,-70,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Capacity" Margin="10 0" FontSize="16" Grid.Row="2"
-         Grid.Column="1" 
-         VerticalAlignment="Center"
-         Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  
-         Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="Capacity" UpdateSourceTrigger="PropertyChanged">
+        <TextBlock Text="Выберите Гостя" TextWrapping="WrapWithOverflow"
+       Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="80,10,50,70"/>
+        <ComboBox x:Name="ReservationId" Margin="10 40 10 10" FontSize="16" Grid.Row="2" Grid.Column="1"
+            VerticalAlignment="Center"
+          DisplayMemberPath="ReservationId" 
+          SelectedValue="{Binding ReservationId}"
+          ItemsSource="{Binding Items}"
+          SelectedValuePath="ReservationId" 
+          Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
+          Style="{StaticResource ComboBoxControlErrors}">
+            <ComboBox.SelectedItem>
+                <Binding Path="ReservationId" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:OnlyDigitsValidationRule ValidatesOnTargetUpdated="True"/>
+                        <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock Text="Введите цену за ночь" Margin="80,10,-70,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PricePerNight" Margin="10,44,10,0" FontSize="16" Grid.Row="3" 
-  VerticalAlignment="Top"
-  Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  
-  Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="PricePerNight" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validation:OnlyDigitsValidationRule ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+            </ComboBox.SelectedItem>
+        </ComboBox>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="57*"/>
@@ -113,8 +94,8 @@
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Сохранить" Margin="20,40,20,10" Grid.Column="0" Grid.ColumnSpan="2"
-                Command="{Binding AddCommand}" Click="Button_Click" Grid.Row="4"/>
-            <Button Content="Отмена" Margin="20,40,20,10" Grid.Column="2" Click="Button_Click_1"  Grid.Row="4"/>
+                    Command="{Binding AddCommand}" Click="Button_Click" Grid.Row="3"/>
+            <Button Content="Отмена" Margin="20,40,20,10" Grid.Column="2" Click="Button_Click_1"  Grid.Row="3"/>
         </Grid>
     </Grid>
 </Window>

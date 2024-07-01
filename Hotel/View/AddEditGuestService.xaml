@@ -1,12 +1,12 @@
-﻿<Window x:Class="Hotel.View.AddEditGuest"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="Hotel.View.AddEditGuestService"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:validation="clr-namespace:Hotel.Validation"
         xmlns:local="clr-namespace:Hotel.View"
         mc:Ignorable="d"
-                Title="Добавление гостя" Height="400" Width="300">
+                Title="Добавление гостя" Height="450" Width="270">
     <Window.Resources>
         <validation:NameValidationRule x:Key="nameValidation" />
         <validation:OnlyDigitsValidationRule x:Key="onlyDigitsValidation"/>
@@ -49,44 +49,47 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock  Text="Введите фамилию " Margin="90 0 90 50" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="LastName" Margin="10 0" FontSize="16" Grid.Row="0" Grid.Column="1" 
-         VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-         Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
+        <TextBlock Text="Выберите дату оплаты " Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"
+               TextWrapping="WrapWithOverflow" Margin="60,10,60,0"/>
+        <DatePicker x:Name="ServiceDate" Margin="10 40 10 10" FontSize="16" Grid.Row="0" Grid.Column="1" 
+                VerticalAlignment="Center" SelectedDate="{Binding ServiceDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        
+        <TextBlock Text="Выберите Резерватора" TextWrapping="WrapWithOverflow"
+      Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="60,10,50,70"/>
+        <ComboBox x:Name="ReservationId" Margin="10 40 10 10" FontSize="16" Grid.Row="1" Grid.Column="1"
+           VerticalAlignment="Center"
+         DisplayMemberPath="ReservationId" 
+         SelectedValue="{Binding ReservationId}"
+         ItemsSource="{Binding Items}"
+         SelectedValuePath="ReservationId" 
+         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
+         Style="{StaticResource ComboBoxControlErrors}">
+            <ComboBox.SelectedItem>
+                <Binding Path="ReservationId" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
-                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                        <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock  Text="Введите Имя " Margin="90,20,80,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="FirstName" Margin="10,48,10,0" FontSize="16" Grid.Row="1" 
-     VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-     Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
+            </ComboBox.SelectedItem>
+        </ComboBox>
+        <TextBlock Text="Выберите Сервис" TextWrapping="WrapWithOverflow"
+        Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="60,10,50,70"/>
+        <ComboBox x:Name="ServiceId" Margin="10 40 10 10" FontSize="16" Grid.Row="2" Grid.Column="1"
+     VerticalAlignment="Center"
+   DisplayMemberPath="ServiceId" 
+   SelectedValue="{Binding ServiceId}"
+   ItemsSource="{Binding Items}"
+   SelectedValuePath="ServiceId" 
+   Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
+   Style="{StaticResource ComboBoxControlErrors}">
+            <ComboBox.SelectedItem>
+                <Binding Path="ServiceId" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
-                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                        <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock  Text="Введите Номер телефона " Margin="90,20,80,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PhoneNumber" Margin="10,48,10,0" FontSize="16" Grid.Row="2" 
-VerticalAlignment="Top" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
-Style="{StaticResource InputControlErrors}">
-            <TextBox.Text>
-                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validation:PhoneValidationRule ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+            </ComboBox.SelectedItem>
+        </ComboBox>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="57*"/>

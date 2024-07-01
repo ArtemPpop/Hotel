@@ -31,8 +31,8 @@ public partial class Room:BaseClass
         }
     }
 
-    private string? capacity;
-    public string? Capacity
+    private int capacity;
+    public int Capacity
     {
         get { return capacity; }
         set
@@ -53,5 +53,4 @@ public partial class Room:BaseClass
         }
     }
 
-    public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 }

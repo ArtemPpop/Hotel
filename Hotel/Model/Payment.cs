@@ -7,16 +7,7 @@ namespace Hotel.Model;
 public partial class Payment:BaseClass
 {
     [Key]
-    private int paymentId;
-    public int PaymentId
-    {
-        get { return paymentId; }
-        set
-        {
-            paymentId = value;
-            OnPropertyChanged(nameof(PaymentId));
-        }
-    }
+    public int PaymentId { get; set; }
 
     private int reservationId;
     public int ReservationId
@@ -51,5 +42,4 @@ public partial class Payment:BaseClass
         }
     }
 
-    public virtual Reservation Reservation { get; set; } = null!;
 }

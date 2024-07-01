@@ -64,13 +64,6 @@ public partial class HotelContext : DbContext
             entity.Property(e => e.ServiceDate).HasColumnName("ServiceDate ");
             entity.Property(e => e.ServiceId).HasColumnName("ServiceID ");
 
-            entity.HasOne(d => d.Reservation).WithMany(p => p.GuestServices)
-                .HasForeignKey(d => d.ReservationId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.Service).WithMany(p => p.GuestServices)
-                .HasForeignKey(d => d.ServiceId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<Payment>(entity =>
@@ -82,9 +75,6 @@ public partial class HotelContext : DbContext
             entity.Property(e => e.PaymentDate).HasColumnName("PaymentDate ");
             entity.Property(e => e.ReservationId).HasColumnName("ReservationID ");
 
-            entity.HasOne(d => d.Reservation).WithMany(p => p.Payments)
-                .HasForeignKey(d => d.ReservationId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<Reservation>(entity =>
@@ -97,13 +87,6 @@ public partial class HotelContext : DbContext
             entity.Property(e => e.GuestId).HasColumnName("GuestID ");
             entity.Property(e => e.RoomId).HasColumnName("RoomID ");
 
-            entity.HasOne(d => d.Guest).WithMany(p => p.Reservations)
-                .HasForeignKey(d => d.GuestId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.Room).WithMany(p => p.Reservations)
-                .HasForeignKey(d => d.RoomId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<Room>(entity =>
@@ -128,6 +111,5 @@ public partial class HotelContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

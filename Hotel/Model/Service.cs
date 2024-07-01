@@ -7,16 +7,7 @@ namespace Hotel.Model;
 public partial class Service:BaseClass
 {
     [Key]
-    private string? serviceId;
-    public string? ServiceId
-    {
-        get { return serviceId; }
-        set
-        {
-            serviceId = value;
-            OnPropertyChanged(nameof(ServiceId));
-        }
-    }
+     public int ServiceId { get; set; }
 
     private string? serviceName;
     public string? ServiceName
@@ -39,6 +30,4 @@ public partial class Service:BaseClass
             OnPropertyChanged(nameof(ServicePrice));
         }
     }
-
-    public virtual ICollection<GuestService> GuestServices { get; set; } = new List<GuestService>();
 }

@@ -7,16 +7,7 @@ namespace Hotel.Model;
 public partial class Reservation:BaseClass
 {
     [Key]
-    private int reservationId;
-    public int ReservationId
-    {
-        get { return reservationId; }
-        set
-        {
-            reservationId = value;
-            OnPropertyChanged(nameof(ReservationId));
-        }
-    }
+     public int ReservationId { get; set; }
 
     private int guestId;
     public int GuestId
@@ -61,12 +52,4 @@ public partial class Reservation:BaseClass
             OnPropertyChanged(nameof(CheckOutDate));
         }
     }
-
-    public virtual Guest Guest { get; set; } = null!;
-
-    public virtual ICollection<GuestService> GuestServices { get; set; } = new List<GuestService>();
-
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
-
-    public virtual Room Room { get; set; } = null!;
 }

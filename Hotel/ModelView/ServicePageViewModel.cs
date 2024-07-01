@@ -10,39 +10,39 @@ using System.Threading.Tasks;
 
 namespace Hotel.ModelView
 {
-    internal class RoomPageViewModel : BaseClass
+    class ServicePageViewModel : BaseClass
     {
         HotelContext db = new HotelContext();
-        private ObservableCollection<Room> roomList;
-        public ObservableCollection<Room> RoomList
+        private ObservableCollection<Service> serviceList;
+        public ObservableCollection<Service> ServiceList
         {
-            get { return roomList; }
+            get { return serviceList; }
             set
             {
-                roomList = value;
-                OnPropertyChanged(nameof(RoomList));
+                serviceList = value;
+                OnPropertyChanged(nameof(ServiceList));
             }
         }
 
-        public RoomPage window;
+        public ServicePage window;
 
-        private Room? selectedroom;
-        public Room? SelectedRoom
+        private Service? selectedService;
+        public Service? SelectedService
         {
-            get { return selectedroom; }
+            get { return selectedService; }
             set
             {
-                selectedroom = value;
-                OnPropertyChanged(nameof(SelectedRoom));
+                selectedService = value;
+                OnPropertyChanged(nameof(SelectedService));
             }
         }
 
-        public RoomPageViewModel(RoomPage w)
+        public ServicePageViewModel(ServicePage w)
         {
             this.window = w;
             db.Database.EnsureCreated();
-            db.Rooms.Load();
-            RoomList = db.Rooms.Local.ToObservableCollection();
+            db.Services.Load();
+            ServiceList = db.Services.Local.ToObservableCollection();
         }
 
         private RelayCommand? addCommand;
@@ -53,11 +53,11 @@ namespace Hotel.ModelView
                 return addCommand ??
                     (addCommand = new RelayCommand(obj =>
                     {
-                        AddEditRoom window = new AddEditRoom(new Room());
+                        AddEditService window = new AddEditService(new Service());
                         if (window.ShowDialog() == true)
                         {
-                            Room room = window.Room;
-                            db.Rooms.Add(room);
+                            Service service = window.Service;
+                            db.Services.Add(service);
                             db.SaveChanges();
                         }
                     }));
@@ -67,22 +67,20 @@ namespace Hotel.ModelView
         public RelayCommand EditCommand
         {
 
-            get 
+            get
             {
 
                 return editCommand ??
                     (editCommand = new RelayCommand(obj =>
                     {
-                        Room? room = obj as Room;
-                        if (room == null) return;
-                        AddEditRoom window = new AddEditRoom(room!);
+                        Service? service = obj as Service;
+                        if (service == null) return;
+                        AddEditService window = new AddEditService(service!);
                         if (window.ShowDialog() == true)
                         {
-                            room.RoomNumber = window.Room.RoomNumber;
-                            room.RoomType = window.Room.RoomType;
-                            room.Capacity = window.Room.Capacity;
-                            room.PricePerNight = window.Room.PricePerNight;
-                            db.Entry(room).State = EntityState.Modified;
+                            service.ServiceName = window.Service.ServiceName;
+                            service.ServicePrice = window.Service.ServicePrice;
+                            db.Entry(service).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }));
@@ -96,11 +94,11 @@ namespace Hotel.ModelView
                 return deleteCommand ??
                   (deleteCommand = new RelayCommand(selectedItem =>
                   {
-                      
-                      Room? room = selectedItem as Room;
-                      if (room == null) return;
+                    
+                      Service? service = selectedItem as Service;
+                      if (service == null) return;
 
-                      db.Rooms.Remove(room);
+                      db.Services.Remove(service);
                       db.SaveChanges();
 
                   }));
@@ -108,3 +106,5 @@ namespace Hotel.ModelView
         }
     }
 }
+
+

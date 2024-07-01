@@ -31,5 +31,35 @@ namespace Hotel
         {
             FrameContainer.Navigate(new RoomPage());
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new MainPage());
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new EmployeePage());
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new ReservationPage());
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new PaymentPage());
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new ServicePage());
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new GuestServicePage());
+        }
     }
 }

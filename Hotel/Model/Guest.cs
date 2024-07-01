@@ -43,6 +43,6 @@ public partial class Guest:BaseClass
         }
     }
 
-    public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
+  
 
 }

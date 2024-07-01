@@ -95,7 +95,7 @@ namespace Hotel.ModelView
                     return deleteCommand ??
                       (deleteCommand = new RelayCommand(selectedItem =>
                       {
-                          // получаем выделенный объект
+                        
                           Guest? guest = selectedItem as Guest;
                           if (guest == null) return;
                          

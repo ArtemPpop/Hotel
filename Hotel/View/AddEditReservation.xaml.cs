@@ -16,16 +16,24 @@ using System.Windows.Shapes;
 namespace Hotel.View
 {
     /// <summary>
-    /// Логика взаимодействия для AddEditEmployee.xaml
+    /// Логика взаимодействия для AddEditReservation.xaml
     /// </summary>
-    public partial class AddEditEmployee : Window
+    public partial class AddEditReservation : Window
     {
-        public Employee Employee { get; private set; }
-        public AddEditEmployee(Employee employee)
+        public Reservation Reservation { get; private set; }
+        public AddEditReservation(Reservation reservation)
         {
             InitializeComponent();
-            Employee = employee;
-            DataContext = Employee;
+            Reservation = reservation;
+            DataContext = Reservation;
+            using (HotelContext db = new HotelContext())
+            {
+                GuestId.ItemsSource = db.Guests.ToList();
+            }
+            using (HotelContext db = new HotelContext())
+            {
+                RoomId.ItemsSource = db.Rooms.ToList();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
