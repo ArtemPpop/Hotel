@@ -1,4 +1,5 @@
 ﻿using Hotel.Model;
+using Hotel.ModelView;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,19 +26,10 @@ namespace Hotel.View
         public MainPage()
         {
             InitializeComponent();
+            DataContext = new NumberRoomsViewModel();
         }
-        private void DisplayResults<T>(IEnumerable<T> items)
-        {
-            ResultsListBox.ItemsSource = items;
-            DataContext = this;
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            using (var context = new HotelContext())
-            {
-                var rooms = context.Rooms.ToList();
-                DisplayResults(rooms);
-            }
-        }
+
+     
     }
+     
 }

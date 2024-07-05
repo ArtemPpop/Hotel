@@ -33,6 +33,11 @@ public partial class Guest:BaseClass
     }
 
     private string? phoneNumber;
+    internal DateTime CheckInDate;
+    internal object Payments;
+    internal DateTime CheckOutDate;
+    internal object Room;
+
     public string? PhoneNumber
     {
         get { return phoneNumber; }

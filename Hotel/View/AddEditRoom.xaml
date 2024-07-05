@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:validation="clr-namespace:Hotel.Validation"
         xmlns:local="clr-namespace:Hotel.View"
         mc:Ignorable="d"
@@ -41,7 +42,7 @@
             </DockPanel>
         </ControlTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid  Background="#673AB7">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -50,7 +51,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock  Text="Введите номер" Margin="100,10,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="RoomNumber" Margin="10 0" FontSize="17" Grid.Row="0" Grid.Column="1" 
+        <TextBox x:Name="RoomNumber" Margin="10 0" FontSize="17" Grid.Row="0" Grid.Column="1"  Background="#B39DDB"
           VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
           Style="{StaticResource InputControlErrors}">
             <TextBox.Text>
@@ -79,8 +80,8 @@
             <TextBlock>ROYAL SUITE сьют</TextBlock>
             <TextBlock>ROYAL GARDEN SUITE</TextBlock>
         </ComboBox>
-        <TextBlock Text="Введите кол-во гостей" Margin="80,10,-70,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Capacity" Margin="10 0" FontSize="16" Grid.Row="2"
+        <TextBlock Text="Введите кол-во гостей" Margin="80,10,-70,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" />
+        <TextBox x:Name="Capacity" Margin="10 0" FontSize="16" Grid.Row="2"  Background="#B39DDB"
          Grid.Column="1" 
          VerticalAlignment="Center"
          Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  
@@ -94,7 +95,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBlock Text="Введите цену за ночь" Margin="80,10,-70,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PricePerNight" Margin="10,44,10,0" FontSize="16" Grid.Row="3" 
+        <TextBox x:Name="PricePerNight" Margin="10,44,10,0" FontSize="16" Grid.Row="3"  Background="#B39DDB"
   VerticalAlignment="Top"
   Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  
   Style="{StaticResource InputControlErrors}">
@@ -113,8 +114,8 @@
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Сохранить" Margin="20,40,20,10" Grid.Column="0" Grid.ColumnSpan="2"
-                Command="{Binding AddCommand}" Click="Button_Click" Grid.Row="4"/>
-            <Button Content="Отмена" Margin="20,40,20,10" Grid.Column="2" Click="Button_Click_1"  Grid.Row="4"/>
+                Command="{Binding AddCommand}" Click="Button_Click" Grid.Row="4" FontSize="15" Background="Teal"/>
+            <Button Content="Отмена" Margin="20,40,20,10" Grid.Column="2" Click="Button_Click_1"  Grid.Row="4" FontSize="15" Background="Teal"/>
         </Grid>
     </Grid>
 </Window>

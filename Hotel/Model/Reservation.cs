@@ -31,8 +31,8 @@ public partial class Reservation:BaseClass
         }
     }
 
-    private string? checkInDate;
-    public string? CheckInDate
+    private DateTime? checkInDate;
+    public DateTime? CheckInDate
     {
         get { return checkInDate; }
         set
@@ -42,8 +42,10 @@ public partial class Reservation:BaseClass
         }
     }
 
-    private string? checkOutDate;
-    public string? CheckOutDate
+    private DateTime? checkOutDate;
+    internal object RoomNumber;
+
+    public DateTime? CheckOutDate
     {
         get { return checkOutDate; }
         set
