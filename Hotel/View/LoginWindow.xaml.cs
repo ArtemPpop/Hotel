@@ -1,5 +1,4 @@
-﻿using Hotel.Model;
-using Hotel.ModelView;
+﻿using Hotel.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hotel.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для LoginWindow.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class LoginWindow : Window
     {
-        public MainPage()
+        public LoginWindow()
         {
             InitializeComponent();
-            DataContext = new NumberRoomsViewModel();
+            DataContext = new LoginViewModel(); 
         }
-
-     
+    
     }
-     
 }

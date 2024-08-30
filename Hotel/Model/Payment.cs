@@ -31,8 +31,8 @@ public partial class Payment:BaseClass
         }
     }
 
-    private string? amountPaid;
-    public string? AmountPaid
+    private double? amountPaid;
+    public double? AmountPaid
     {
         get { return amountPaid; }
         set

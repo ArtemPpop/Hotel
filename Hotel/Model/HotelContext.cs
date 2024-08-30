@@ -29,11 +29,22 @@ public partial class HotelContext : DbContext
 
     public virtual DbSet<Service> Services { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Data Source=Hotel.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("User");
+
+            entity.Property(e => e.UserId).HasColumnName("UserId");
+            entity.Property(e => e.UserName).HasColumnName("UserName");
+            entity.Property(e => e.Password).HasColumnName("Password");
+        });
+
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.ToTable("Employee");

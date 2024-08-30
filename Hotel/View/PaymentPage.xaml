@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Hotel.View"
        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
@@ -13,7 +14,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" Margin="10,10,10,10"  x:Name="PaymentContainer" 
+        <ListBox Grid.Row="0" Margin="10,10,10,10"  x:Name="PaymentContainer" Background="DarkSlateBlue" FontSize="20" FontStyle="Normal" FontWeight="Bold"
             ItemsSource="{Binding PaymentList}"
             SelectedItem="{Binding SelectedPayment}" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
@@ -56,9 +57,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Row="0" Margin="10"/>
+            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Row="0" Margin="10" FontSize="15" Background="Teal"/>
             <Button Grid.Column="1" Content="Удалить" Command="{Binding DeleteCommand}"
-                CommandParameter="{Binding ElementName=PaymentContainer, Path=SelectedItem}" Margin="10"/>
+                CommandParameter="{Binding ElementName=PaymentContainer, Path=SelectedItem}" Margin="10" FontSize="15" Background="Teal"/>
         </Grid>
     </Grid>
 </Page>

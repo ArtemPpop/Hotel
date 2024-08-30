@@ -3,33 +3,35 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Hotel.View"
+      xmlns:viewmodel="clr-namespace:Hotel.ModelView"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1000"
-      Title="MainPage"> 
-    <Grid >
+      Title="MainPage">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <UniformGrid Grid.Row="0" Columns="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <Button Content="Номерной Фонд" Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal" Click="Button_Click"/>
-            <Button Content="Current Guests"  Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="Guest Info"  Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="Guest Stay Cost"  Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="Total Cost for Period"  Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
+        <UniformGrid Grid.Row="0" Columns="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Номерной Фонд" Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowRoomFundCommand}" />
+            <Button Content="Текущие гости"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowCurrentGuestsCommand}" />
+            <Button Content="Информация о гостях"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowGuestInfoCommand}" />
+            <Button Content="Стоимость проживания"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowGuestStayCostCommand}" />
+            <Button Content="Общая стоимость"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowTotalCostForPeriodCommand}" />
         </UniformGrid>
 
-        <UniformGrid Grid.Row="2"  Columns="5" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <Button Content="Available Rooms" Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="Rooms Available in Period"  Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="Booked Rooms"  Width="150" Margin="20 0 20 0  " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="Debtor Guests"  Width="150" Margin="20 0 20 0 " Height="30" FontSize="15" Background="Teal"/>
-            <Button Content="All Services"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal"/>
+        <UniformGrid Grid.Row="2" Columns="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Свободные номера" Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowAvailableRoomsCommand}" />
+            <Button Content="Номера, доступные в период"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowRoomsAvailableInPeriodCommand}" />
+            <Button Content="Забранироаные комнаты"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowBookedRoomsCommand}" />
+            <Button Content="Должники"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowDebtorGuestsCommand}" />
+            <Button Content="Всех услуги гостиницы"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowAllServicesCommand}" />
         </UniformGrid>
 
-        <ListBox x:Name="ResultsListBox" Height="550" Margin="1" Grid.Row="1" Background="DarkSlateBlue"  ItemsSource="{Binding Rooms}"/>
+        <ListBox ItemsSource="{Binding Results}" Height="560" Margin="1" Grid.Row="1" Background="DarkSlateBlue" FontSize="20" FontStyle="Normal" FontWeight="Bold" />
     </Grid>
 </Page>

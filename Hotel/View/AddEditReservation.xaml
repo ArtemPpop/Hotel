@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:validation="clr-namespace:Hotel.Validation"
         xmlns:local="clr-namespace:Hotel.View"
         mc:Ignorable="d"
@@ -42,7 +43,7 @@
             </DockPanel>
         </ControlTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid  Background="#673AB7">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -104,8 +105,8 @@
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Сохранить" Margin="20,40,20,10" Grid.Column="0" Grid.ColumnSpan="2"
-                    Command="{Binding AddCommand}" Click="Button_Click" Grid.Row="3"/>
-            <Button Content="Отмена" Margin="20,40,20,10" Grid.Column="2" Click="Button_Click_1"  Grid.Row="3"/>
+                    Command="{Binding AddCommand}" Click="Button_Click" Grid.Row="3" FontSize="15" Background="Teal"/>
+            <Button Content="Отмена" Margin="20,40,20,10" Grid.Column="2" Click="Button_Click_1"  Grid.Row="3" FontSize="15" Background="Teal"/>
         </Grid>
     </Grid>
 </Window>
