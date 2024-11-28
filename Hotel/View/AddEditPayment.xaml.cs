@@ -30,6 +30,7 @@ namespace Hotel.View
             {
                 ReservationId.ItemsSource = db.Reservations.ToList();
             }
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

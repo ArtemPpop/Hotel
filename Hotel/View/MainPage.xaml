@@ -32,6 +32,30 @@
             <Button Content="Всех услуги гостиницы"  Width="150" Margin="20 0 20 0" Height="30" FontSize="15" Background="Teal" Command="{Binding ShowAllServicesCommand}" />
         </UniformGrid>
 
-        <ListBox ItemsSource="{Binding Results}" Height="560" Margin="1" Grid.Row="1" Background="DarkSlateBlue" FontSize="20" FontStyle="Normal" FontWeight="Bold" />
+
+        <ItemsControl ItemsSource="{Binding Results}" Grid.Row="1" Grid.ColumnSpan="2">
+            <ItemsControl.ItemsPanel>
+                <!-- Используем WrapPanel для красивого расположения карточек -->
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Card Padding="16" Background="#367a9c"
+                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                 UniformCornerRadius="6" Margin="10">
+                        <StackPanel>
+                            <TextBlock Text="{Binding}" 
+                               FontSize="16" 
+                               FontWeight="Bold" 
+                               Foreground="White" 
+                               TextWrapping="Wrap" />
+                        </StackPanel>
+                    </materialDesign:Card>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </Page>

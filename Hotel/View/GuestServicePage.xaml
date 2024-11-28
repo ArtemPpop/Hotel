@@ -43,9 +43,16 @@
                             <ColumnDefinition Width="200"/>
                         
                         </Grid.ColumnDefinitions>
+                        <materialDesign:Card Grid.Row="1" Grid.ColumnSpan="2"
+                         Padding="16" Background="#367a9c"
+                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                         UniformCornerRadius="6" Margin="10">
+                            <StackPanel>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=ServiceDate}" FontSize="20" TextAlignment="Center"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=ReservationId}" FontSize="20" TextAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=ServiceId}" FontSize="20" TextAlignment="Center"/>
+                            </StackPanel>
+                        </materialDesign:Card>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

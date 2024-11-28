@@ -55,21 +55,10 @@
         <DatePicker x:Name="PaymentDate" Margin="10 40 10 10" FontSize="16" Grid.Row="0" Grid.Column="1" 
                 VerticalAlignment="Center" SelectedDate="{Binding PaymentDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
-        <TextBlock Text="Выберите способ оплаты" Margin="80,10,60,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="AmountPaid" Margin="10,45,10,10" FontSize="16" Grid.Row="1" VerticalAlignment="Top"
-   Text="{Binding AmountPaid}"
-   Validation.ErrorTemplate="{StaticResource ErrorTemplate}" 
-   Style="{StaticResource ComboBoxControlErrors}">
-            <ComboBox.SelectedItem>
-                <Binding Path="AmountPaid" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validation:SelectionValidationRule ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </ComboBox.SelectedItem>
-            <TextBlock>Наличными</TextBlock>
-            <TextBlock>Безналичными</TextBlock>
-        </ComboBox>
+        <TextBlock Text="Выберите сумму платежа" Margin="80,10,60,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+        <TextBox x:Name="AmountPaid" Margin="10,45,10,10" FontSize="16" Grid.Row="1" VerticalAlignment="Top"
+        Text="{Binding AmountPaid}" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
+        Style="{StaticResource InputControlErrors}"/>
         <TextBlock Text="Выберите Гостя" TextWrapping="WrapWithOverflow"
        Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="80,10,50,70"/>
         <ComboBox x:Name="ReservationId" Margin="10 40 10 10" FontSize="16" Grid.Row="2" Grid.Column="1"

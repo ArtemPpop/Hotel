@@ -43,8 +43,6 @@ public partial class Reservation:BaseClass
     }
 
     private DateTime? checkOutDate;
-    internal object RoomNumber;
-
     public DateTime? CheckOutDate
     {
         get { return checkOutDate; }
