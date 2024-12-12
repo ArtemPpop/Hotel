@@ -12,7 +12,6 @@
       Title="PaymentPage">
 
     <Page.Resources>
-        <!-- Определяем конвертер в ресурсах -->
         <local1:ToPaymentConverter x:Key="ToPaymentConverter" />
     </Page.Resources>
 
@@ -22,7 +21,6 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <!-- Список платежей -->
         <ListBox Grid.Row="0" Margin="10,10,10,10"  
                  x:Name="PaymentContainer" 
                  Background="DarkSlateBlue" 
@@ -65,17 +63,17 @@
                             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                             UniformCornerRadius="6" Margin="10">
                             <StackPanel>
-                                <!-- Преобразование даты в нужный формат через конвертер -->
+                                
                                 <TextBlock Grid.Row="1" Grid.Column="1" 
                                     Text="{Binding PaymentDate, StringFormat=yyyy-MM-dd}" 
                                     FontSize="20" TextAlignment="Center" />
 
-                                <!-- Привязка AmountPaid (Сумма платежа) -->
+                                
                                 <TextBlock Grid.Row="0" Grid.Column="1" 
                                            Text="{Binding Path=AmountPaid}" 
                                            FontSize="20" TextAlignment="Center"/>
 
-                                <!-- Привязка имени гостя через ReservationId -->
+                                
                                 <TextBlock Grid.Row="1" Grid.Column="0" 
                                            Text="{Binding Path=ReservationId, Converter={StaticResource ToPaymentConverter}}" 
                                            FontSize="20" TextAlignment="Center"/>

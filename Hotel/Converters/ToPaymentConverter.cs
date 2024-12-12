@@ -18,21 +18,14 @@ namespace Hotel.Converters
             {
                 using (var db = new HotelContext())
                 {
-                    // Получаем резервацию по ReservationId
-                    var reservation = db.Reservations.FirstOrDefault(r => r.ReservationId == payment.ReservationId);
-                    if (reservation == null)
-                        return "Unknown Reservation";
-
-                    // Получаем гостя по GuestId из Reservation
-                    var guest = db.Guests.FirstOrDefault(g => g.GuestId == reservation.GuestId);
-                    string guestName = guest?.FirstName ?? "Unknown Guest";
-
-                    // Формируем строку для отображения
-                    return $"{guestName}";
+                    return db.Reservations
+                             .Where(r => r.ReservationId == payment.ReservationId)
+                             .Select(r => db.Guests.FirstOrDefault(g => g.GuestId == r.GuestId).FirstName)
+                             .FirstOrDefault() ?? "Unknown Guest";
                 }
             }
 
-            return "Invalid Payment";
+            return "ошибка";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
